@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #1abc9c;
+
+  .container {
+    max-width: 440px;
+    padding: 0 20px;
+    margin: 50px auto;
+
+    .wrapper {
+      width: 100%;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+
+      .title {
+        height: 90px;
+        background: #16a085;
+        border-radius: 5px 5px 0 0;
+        color: #fff;
+        font-size: 30px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      form {
+        padding: 30px 25px 25px 25px;
+
+        .row {
+          margin-bottom: 15px;
+          position: relative;
+
+          input {
+            height: 100%;
+            width: 100%;
+            outline: none;
+            padding-left: 10px;
+            border-radius: 5px;
+            border: 1px solid lightgrey;
+            font-size: 16px;
+            transition: all 0.3s ease;
+
+            &:focus {
+              border-color: #16a085;
+              box-shadow: inset 0 0 2px 2px rgba(26, 188, 156, 0.25);
+            }
+
+            &::placeholder {
+              color: #999;
+            }
+          }
+
+          .field_error {
+            color: #ea868f;
+          }
+        }
+
+        .pass {
+          margin: -8px 0 20px 0;
+
+          a {
+            color: #16a085;
+            font-size: 17px;
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        .button input {
+          color: #fff;
+          font-size: 20px;
+          font-weight: 500;
+          padding-left: 0;
+          background: #16a085;
+          border: 1px solid #16a085;
+          cursor: pointer;
+
+          &:hover {
+            background: #12876f;
+          }
+        }
+
+        .signup-link {
+          text-align: center;
+          margin-top: 20px;
+          font-size: 17px;
+
+          a {
+            color: #16a085;
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+
+    .info_container {
+      text-align: center;
+      color: white;
+
+      a {
+        color: white;
+      }
+    }
+  }
+}
+
+::selection {
+  background: rgba(26, 188, 156, 0.3);
+}
+
+.alert {
+  margin-bottom: 0;
+}

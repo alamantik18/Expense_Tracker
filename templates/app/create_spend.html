@@ -1,0 +1,99 @@
+{% extends 'app/base_app_template.html' %}
+
+{% block title %}
+    Create spend
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        <div class="form_wrapper">
+            <div class="form_header"><h3 class="form_header-title">Создание денежной операции</h3></div>
+            <form method="post" class="create_form" action="{% url 'create_spend' %}">
+                {% csrf_token %}
+                <div class="row">
+                    {% if form_spend.amount_spend.errors %}
+                        {% for error in field.errors %}
+                            <p class="field_error">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_spend.amount_spend }}
+                </div>
+                <div class="row">
+                    {% if form_spend.description.errors %}
+                        {% for error in field.errors %}
+                            <p class="field_error">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_spend.description }}
+                </div>
+                <div class="row">
+                    {% if form_spend.date.errors %}
+                        {% for error in field.errors %}
+                            <p class="field_error">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_spend.date }}
+                </div>
+                <div class="row d-flex justify-content-between align-items-center">
+                    <div class="row_category">
+                        {% if form_spend.category.errors %}
+                            {% for error in field.errors %}
+                                <p class="field_error">
+                                    {{ error }}
+                                </p>
+                            {% endfor %}
+                        {% endif %}
+                        {{ form_spend.category.label }}
+                        {{ form_spend.category }}
+                    </div>
+                    <div class="row_category" id="add-tag-form" style="display: none">
+                        {% if form_tag.category.errors %}
+                            {% for error in field.errors %}
+                                <p class="field_error">
+                                    {{ error }}
+                                </p>
+                            {% endfor %}
+                        {% endif %}
+                        {{ form_tag.name.label }}
+                        {{ form_tag.name }}
+                    </div>
+                    <a href="#" class="user_expenses_add" id="add-tag-link">
+                        <div class="circle">
+                            <div class="plus">+</div>
+                            <div class="tooltip">Добавить теги</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row button">
+                    <input class="btn btn-primary" type="submit" value="Сохранить">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                endDate: 'today',
+                autoclose: true,
+                showWeekDays: false,
+            });
+
+            $('#add-tag-link').click(function (e) {
+                e.preventDefault();
+
+                $(this).hide();
+                $('#add-tag-form').show();
+            })
+        });
+    </script>
+{% endblock %}

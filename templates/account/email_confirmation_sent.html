@@ -1,0 +1,16 @@
+{% extends 'account/base_account_template.html' %}
+{% load static %}
+
+{% block title %}
+    confirm email
+{% endblock %}
+
+{% block content %}
+    <div class="info_container">
+        <h3 class="confirm_sent-text">
+            На ваш адрес электронной почты было отправлено письмо активации. Пожалуйста, подтвердите почту. <br>
+            <a href="{% url 'account_login' %}">Авторизоваться</a>
+        </h3>
+        <img src="{% static 'account/images/waiting.png'%}" alt="waiting" class="confirm_sent-waiting" width="100px" height="100px">
+    </div>
+{% endblock %}

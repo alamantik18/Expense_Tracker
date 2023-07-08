@@ -1,0 +1,16 @@
+.idea/
+
+# various virtualenv
+poetry.lock
+pyproject.toml
+
+#config
+odoo/conf/odoo.conf
+
+#environment
+venv/
+
+#database
+db.sqlite3
+./migrations/
+

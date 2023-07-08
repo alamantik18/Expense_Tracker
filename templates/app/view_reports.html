@@ -1,0 +1,349 @@
+{% extends 'app/base_app_template.html' %}
+
+{% block title %}
+    Reports
+{% endblock %}
+
+{% block content %}
+    {% if spends %}
+        <div class="report_wrapper">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="week-tab" data-bs-toggle="tab" data-bs-target="#week-tab-pane" type="button" role="tab" aria-controls="week-tab-pane" aria-selected="true">Неделя</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="month-tab" data-bs-toggle="tab" data-bs-target="#month-tab-pane" type="button" role="tab" aria-controls="month-tab-pane" aria-selected="false">Месяц</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="three-month-tab" data-bs-toggle="tab" data-bs-target="#three-month-tab-pane" type="button" role="tab" aria-controls="three-month-tab-pane" aria-selected="false">Три месяца</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="six-month-tab" data-bs-toggle="tab" data-bs-target="#six-month-tab-pane" type="button" role="tab" aria-controls="six-month-tab-pane" aria-selected="false">Полгода</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="year-tab" data-bs-toggle="tab" data-bs-target="#year-tab-pane" type="button" role="tab" aria-controls="year-tab-pane" aria-selected="false">Год</button>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="week-tab-pane" role="tabpanel" aria-labelledby="week-tab" tabindex="0">
+                  <div class="week_container">
+                      <h5 class="user_no_expenses">Ваша трата за неделю составляет: {{ data_week.amount_spend.total_amount }}</h5>
+                      <div id="week_container-dashboard" class="week_container-dashboard chart-container"></div>
+                  </div>
+              </div>
+              <div class="tab-pane fade" id="month-tab-pane" role="tabpanel" aria-labelledby="month-tab" tabindex="0">
+                  <div class="month_container">
+                      <h5 class="user_no_expenses">Ваша трата за 30 дней составляет: {{ data_month.amount_spend.total_amount }}</h5>
+                      <div id="month_container-dashboard" class="month_container-dashboard chart-container"></div>
+                  </div>
+              </div>
+              <div class="tab-pane fade" id="three-month-tab-pane" role="tabpanel" aria-labelledby="three-month-tab" tabindex="0">
+                  <div class="three-month_container">
+                      <h5 class="user_no_expenses">Ваша трата за 90 дней составляет: {{ data_threemonth.amount_spend.total_amount }}</h5>
+                      <div id="three-month_container-dashboard" class="three-month_container-dashboard chart-container"></div>
+                  </div>
+              </div>
+              <div class="tab-pane fade" id="six-month-tab-pane" role="tabpanel" aria-labelledby="six-month-tab" tabindex="0">
+                  <div class="six-month_container">
+                      <h5 class="user_no_expenses">Ваша трата за полгода составляет: {{ data_halfyear.amount_spend.total_amount }}</h5>
+                      <div id="six-month_container-dashboard" class="six-month_container-dashboard chart-container"></div>
+                  </div>
+              </div>
+              <div class="tab-pane fade" id="year-tab-pane" role="tabpanel" aria-labelledby="year-tab" tabindex="0">
+                  <div class="year_container">
+                      <h5 class="user_no_expenses">Ваша трата за год составляет: {{ data_year.amount_spend.total_amount }}</h5>
+                      <div id="year_container-dashboard" class="year_container-dashboard chart-container"></div>
+                  </div>
+              </div>
+            </div>
+        </div>
+    {% else %}
+        <h5 class="user_no_expenses">У вас ещё нет сохраненных трат</h5>
+    {% endif %}
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        {#    Данные для графика трат за неделю    #}
+        let week_spends = {{ data_week|safe }};
+        Highcharts.chart('week_container-dashboard', {
+
+            title: {
+                text: 'Статистика по тратам',
+                align: 'left'
+            },
+
+            subtitle: {
+                text: 'За неделю',
+                align: 'left'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Сума траты'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'День траты'
+                },
+                categories: week_spends.spends.dates
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            plotOptions: {
+            },
+
+            series: [{
+                name: 'Траты',
+                data: week_spends.spends.amounts
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+        let month_spends = {{ data_month|safe }};
+        Highcharts.chart('month_container-dashboard', {
+
+            title: {
+                text: 'Статистика по тратам',
+                align: 'left'
+            },
+
+            subtitle: {
+                text: 'За месяц',
+                align: 'left'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Сума траты'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'День траты'
+                },
+                categories: month_spends.spends.dates
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            plotOptions: {
+            },
+
+            series: [{
+                name: 'Траты',
+                data: month_spends.spends.amounts
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+        let treemonth_spends = {{ data_threemonth|safe }};
+        Highcharts.chart('three-month_container-dashboard', {
+
+            title: {
+                text: 'Статистика по тратам',
+                align: 'left'
+            },
+
+            subtitle: {
+                text: 'За 90 дней',
+                align: 'left'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Сума траты'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'День траты'
+                },
+                categories: treemonth_spends.spends.dates
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            plotOptions: {
+            },
+
+            series: [{
+                name: 'Траты',
+                data: treemonth_spends.spends.amounts
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+        let halfyear_spends = {{ data_halfyear|safe }};
+        Highcharts.chart('six-month_container-dashboard', {
+
+            title: {
+                text: 'Статистика по тратам',
+                align: 'left'
+            },
+
+            subtitle: {
+                text: 'За 180 дней',
+                align: 'left'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Сума траты'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'День траты'
+                },
+                categories: halfyear_spends.spends.dates
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            plotOptions: {
+            },
+
+            series: [{
+                name: 'Траты',
+                data: halfyear_spends.spends.amounts
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+        let year_spends = {{ data_year|safe }};
+        Highcharts.chart('year_container-dashboard', {
+
+            title: {
+                text: 'Статистика по тратам',
+                align: 'left'
+            },
+
+            subtitle: {
+                text: 'За год',
+                align: 'left'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Сума траты'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'День траты'
+                },
+                categories: year_spends.spends.dates
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            plotOptions: {
+            },
+
+            series: [{
+                name: 'Траты',
+                data: year_spends.spends.amounts
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+    </script>
+{% endblock %}

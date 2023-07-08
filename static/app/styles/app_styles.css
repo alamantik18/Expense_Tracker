@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700;900&display=swap");
+* {
+  color: whitesmoke;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif; }
+
+hr {
+  margin: 0; }
+
+body {
+  background-color: #373A3A; }
+
+.form_wrapper {
+  width: 100%;
+  border-radius: 25px;
+  background-color: #464a4a;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  padding: 15px; }
+  .form_wrapper .create_form .row {
+    width: 100%;
+    margin: 0 auto 15px; }
+    .form_wrapper .create_form .row .form-create {
+      border: white 1px solid;
+      background-color: transparent;
+      border-radius: 5px;
+      transition: box-shadow .3s ease-in-out;
+      outline: none;
+      resize: none;
+      -moz-appearance: textfield;
+      -webkit-appearance: textfield; }
+      .form_wrapper .create_form .row .form-create::-webkit-outer-spin-button, .form_wrapper .create_form .row .form-create::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0; }
+      .form_wrapper .create_form .row .form-create::placeholder {
+        color: inherit; }
+      .form_wrapper .create_form .row .form-create:focus {
+        box-shadow: 0 0 8px 3px rgba(214, 214, 215, 0.5); }
+    .form_wrapper .create_form .row .category-select {
+      background-color: #464a4a;
+      color: whitesmoke; }
+    .form_wrapper .create_form .row .row_category {
+      width: 45%;
+      padding: 0; }
+      .form_wrapper .create_form .row .row_category select, .form_wrapper .create_form .row .row_category input {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 0 12px; }
+  .form_wrapper .create_form .btn-primary {
+    background-color: #4ac1f7;
+    border-color: #4ac1f7;
+    font-weight: 700; }
+
+.footer {
+  text-align: center; }
+  .footer .text-muted {
+    color: white !important; }
+    .footer .text-muted a {
+      color: white; }
+
+.user_expenses_add {
+  text-decoration: none;
+  width: auto; }
+  .user_expenses_add .circle {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    background-color: #4ac1f7;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: box-shadow .3s ease-in-out; }
+    .user_expenses_add .circle .plus {
+      font-size: 30px; }
+    .user_expenses_add .circle .tooltip {
+      position: absolute;
+      top: 0;
+      left: -170%;
+      transform: translateX(-50%);
+      background-color: black;
+      padding: 5px;
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity .3s ease-in-out; }
+    .user_expenses_add .circle:hover {
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); }
+      .user_expenses_add .circle:hover .tooltip {
+        opacity: 1; }
+
+.datepicker-dropdown td, .datepicker-dropdown th, .datepicker-dropdown .month, .datepicker-dropdown .year, .datepicker-dropdown .decade, .datepicker-dropdown .century {
+  color: #1b1b1b; }
+
+.report_wrapper .nav-tabs .nav-item .nav-link {
+  color: whitesmoke; }
+  .report_wrapper .nav-tabs .nav-item .nav-link.active {
+    color: #1b1b1b;
+    font-weight: 700; }
+
+.report_wrapper .tab-content .user_no_expenses {
+  margin: 15px 0; }
+
+.table-spends {
+  padding-top: 15px; }
+
+/*# sourceMappingURL=app_styles.css.map */

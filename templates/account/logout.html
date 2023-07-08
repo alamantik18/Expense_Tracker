@@ -1,0 +1,10 @@
+{% extends 'account/base_account_template.html' %}
+{% block title %}
+    Logged out
+{% endblock %}
+
+{% block content %}
+    <div class="info_container">
+        <h3>Вы вышли из системы. Для работы необходимо <a href="{% url 'account_login' %}">авторизоваться</a></h3>
+    </div>
+{% endblock %}

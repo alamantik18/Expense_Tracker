@@ -1,0 +1,36 @@
+{% extends 'account/base_account_template.html' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        <div class="title"><span>Login</span></div>
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                {% for error in form.errors.items %}
+                    {{ error.1 }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if message %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+        <form method="post" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="row">
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <div class="pass"><a href="{% url 'reset_password' %}">Забыл пароль</a></div>
+              <div class="row button">
+                <input type="submit" value="Войти">
+              </div>
+              <div class="signup-link">Ещё не зарегистрированы?<a href="{% url 'account_signup' %}"> Зарегистрироваться</a></div>
+        </form>
+    </div>
+{% endblock %}

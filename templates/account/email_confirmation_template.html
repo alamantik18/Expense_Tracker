@@ -1,0 +1,17 @@
+{% autoescape off %}
+
+Здравствуйте,
+
+Спасибо за регистрацию на нашем сайте! Пожалуйста, подтвердите свой адрес электронной почты, перейдя по следующей ссылке:
+
+{% if email_type == 'activate' %}
+    http://{{ domain }}{% url 'activate_account' uidb64=uid token=token %}
+{% else %}
+    http://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+{% endif %}
+
+Если вы не регистрировались на нашем сайте, просто проигнорируйте это письмо.
+
+С уважением, alamantik
+
+{% endautoescape %}
