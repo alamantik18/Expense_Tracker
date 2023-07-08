@@ -2,8 +2,8 @@
 
 ## Getting started
 install requirements and run server
->> pip install requirements.txt
->> python manage.py runserver
+$ pip install requirements.txt
+$ python manage.py runserver
 
 ## Project preview
 ![image](https://github.com/alamantik18/Expense_Tracker/assets/59261897/dd460cc0-cf5f-403a-86f6-bb2d73c274b5)
